@@ -1,23 +1,26 @@
-import Menu from "../dbs.js";
+import { Menu } from "../dbs.js";
+import mongoose from "mongoose";
 import cors from "cors";
-import express from 'express';
+import express from "express";
 
 const app = express();
 const PORT = 5080;
 
 app.use(cors());
 
-app.get('/inicio', (req, res) => {
-  res.send('Hola mundo desde inicio');
+app.get("/inicio", (req, res) => {
+  res.send("Hola mundo desde inicio");
 });
 
 app.get("/menus", async (req, res) => {
   try {
-    const menus = await Object.values(Menu);
-    res.send(menus.json());
+    const menus = await Menu.find(); // Suponiendo que hay un método "find()" en Menu para obtener los datos del menú
+    res.send(menus);
   } catch (error) {
     console.error("Error:", error);
-    res.status(500).json('Error en el sistema');
+    console.log("Error en el sistema");
+  } finally {
+    mongoose.connection.close();
   }
 });
 

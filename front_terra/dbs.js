@@ -14,6 +14,8 @@ const menuSchema = new mongoose.Schema({
 const Menu = mongoose.model("Menu", menuSchema);
 
 
+
+
 (async () => {
   try {
     await mongoose.connect(
@@ -327,9 +329,7 @@ const Menu = mongoose.model("Menu", menuSchema);
         console.log(`${result.length} documents inserted`);
       } catch (error) {
         console.error("Error:",error);
-      } finally {
-        mongoose.connection.close();
       }
     })();
 
-    export default Menu 
+    export { Menu};
