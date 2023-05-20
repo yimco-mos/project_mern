@@ -1,21 +1,20 @@
 import Menu from "../dbs.js";
 import cors from "cors";
-import router from "./routes.js";
-import express from 'express'
+import express from 'express';
+
 const app = express();
 const PORT = 5080;
 
 app.use(cors());
-app.use("/", router);
 
 app.get('/inicio', (req, res) => {
-  res.send('hola mundo desde inicio');
+  res.send('Hola mundo desde inicio');
 });
 
 app.get("/menus", async (req, res) => {
   try {
-    const menus = await Menu.find({});
-    res.send(menus);
+    const menus = await Object.values(Menu);
+    res.send(menus.json());
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json('Error en el sistema');
