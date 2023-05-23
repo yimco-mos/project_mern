@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const menuSchema = new mongoose.Schema({
+  id:Number,
   name: String,
   platos: [
     {
@@ -30,6 +31,8 @@ const Menu = mongoose.model("Menu", menuSchema);
       
         
           {
+            id:1,
+
          
             name: "menu desayunos",
             platos: [
@@ -149,7 +152,7 @@ const Menu = mongoose.model("Menu", menuSchema);
 
           
           {
-            
+            id:2,
            
             name: "menu comidas",
             platos: [
@@ -296,6 +299,7 @@ const Menu = mongoose.model("Menu", menuSchema);
 
 
           {
+            id:3,
         
             name: "menu bebidas",
           platos: [
