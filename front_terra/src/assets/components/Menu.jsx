@@ -1,24 +1,42 @@
 import { useState, useEffect } from "react";
 const Menus = () => {
-  const [menus, setMenus] = useState([]);
+const [dtMenu, setdtMenu]=useState([])
 
-  const petidata = async () => {
-    try {
-      const datafetch = await fetch("");
-      const res = await datafetch.json();
-      setMenus(res);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+ const peticion = async()=>{
+    const response = await fetch("http://localhost:5080/menus");
+    const data = await response.json();
+    setdtMenu(data);
+  
+  }
+
+const renderMenu =()=> {  
+
+  return (
+    <div>
+      <h1>Menu</h1>
+      <ul>
+        {dtMenu.map((menu) => (
+          <li key={menu}>{menu}</li>
+        ))}
+      </ul>
+    </div>
+  ) }
+
+
+
+
 
   useEffect(() => {
-    const esperardatos = async () => {
-      await petidata();
-      console.log(menus);
-    };
-    esperardatos();
+    peticion();
   }, []);
+
+    return(   
+      <div>
+        {renderMenu()}
+      </div>
+      )
+
+  
 }
 
 export default Menus;
