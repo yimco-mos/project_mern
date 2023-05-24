@@ -9,7 +9,7 @@ const [dtMenu, setdtMenu]=useState([])
   
   }
 
-const renderMenu =()=> {  
+const renderMenuheader =()=> {  
 
   return (
     <div>
@@ -32,7 +32,7 @@ const renderMenu =()=> {
 
     return(   
       <div>
-        {renderMenu()}
+        {renderMenuheader()}
       </div>
       )
 
