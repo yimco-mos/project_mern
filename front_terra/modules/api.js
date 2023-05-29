@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import express from "express";
 import cors from "cors";
 import { Menu } from "../dbs.js";

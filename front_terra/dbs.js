@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
-
+import dotenv from "dotenv";
+dotenv.config()
+const DB_URL= process.env.DB_URL;
 const menuSchema = new mongoose.Schema({
   id:Number,
   name: String,
@@ -19,8 +21,8 @@ const Menu = mongoose.model("Menu", menuSchema);
 
 (async () => {
   try {
-    await mongoose.connect(
-      "mongodb+srv://ymcontreras2000:ymcontreras2000@cluster0.llun3ti.mongodb.net/?retryWrites=true&w=majority",
+     mongoose.connect(
+  DB_URL ,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,

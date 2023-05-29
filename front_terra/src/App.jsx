@@ -1,14 +1,9 @@
-import { BrowserRouter, Route,Link } from "react-router-dom";
-import Menus from "./assets/components/Menu";
-import "./App.css";
-
+import "./assets/styles/App.css";
+import { LogicHeader, } from "./assets/components/LogicHeader";
 function App() {
- 
   return (
-    <div>
-      <Menus />
-    </div>
-  )
+      <LogicHeader />
+  );
 }
 
 export default App;

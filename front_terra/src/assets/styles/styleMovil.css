@@ -1,0 +1,40 @@
+.menu_movil {
+  position: absolute;
+  width: 100%;
+  max-width: 400px;
+  height: 400px;
+  border-radius:6px ;
+  left: 40%;
+  background: #9c99999c;
+  transform: translateY(-3rem);
+  left: 50%;
+  z-index: 999;
+  justify-content: left;
+}
+.edit_movil{
+margin: 0 auto;
+left: 0;
+
+}
+.edit_movil li {
+  list-style: none;
+
+  padding: 1rem;
+  margin: 0.65rem;
+  cursor: pointer;
+}
+
+.menu_movil li .link_movil:hover {
+  color: #ebb70a;
+}
+nav {
+  width: 100%;
+  padding: 1rem;
+}
+
+.link_movil {
+  text-transform: capitalize;
+  color: #000;
+  list-style: none;
+  text-decoration: none;
+}
