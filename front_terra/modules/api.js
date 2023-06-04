@@ -10,7 +10,7 @@ app.use(cors());
 
 
 
-//funcion principal que se encarga de mandar los menus secundarios
+//funcion principal que se encarga de mandar los menus y platos
 
 const getDescriptions = (menus) => {
   const descriptions = {};
@@ -45,16 +45,7 @@ const getDescriptions = (menus) => {
   return descriptions;
 };
     
-    
 
-app.get("/menus",async (req, res) => {
-  
-  const optionMenu = await Menu.find({name:"menu desayunos"});
-  const platosMenus = optionMenu.map(menu=>
-    menu.description
-  )
-  return platosMenus
-});
 
 
 
@@ -70,6 +61,27 @@ app.get("/desayunos", async (req, res) => {
 });
 
 
+app.get("/comidas", async (req, res) => {
+  try {
+    const optionMenu = await Menu.find({name:"menu comidas"});
+    const platosMenus = await getDescriptions(optionMenu);
+    res.json(platosMenus);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+app.get("/bebidas", async (req, res) => {
+  try {
+    const optionMenu = await Menu.find({name:"menu bebidas"});
+    const platosMenus = await getDescriptions(optionMenu);
+    res.json(platosMenus);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 app.listen(PORT, () => {
   console.log("Servidor corriendo en el puerto", PORT);
 });
+
