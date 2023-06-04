@@ -1,6 +1,6 @@
-import { Desayunos } from "./menus/Desayunos";
-import { Comidas } from "./menus/comidas";
-import { Bebidas } from "./menus/Bebidas";
+import { Desayunos } from "./menus/menuDesayunos/Desayunos";
+import { Comidas } from "./menus/menuComidas/Comidas";
+import { Bebidas } from "./menus/menuBebidas/Bebidas";
 import { Route, Link, Routes } from "react-router-dom";
 import { Home } from "./Home";
 import { Menumovil } from "./Menumovil";
@@ -34,10 +34,8 @@ export const LogicHeader = () => {
   }, []);
 
   const handleScroll = () => {
-    const scrollPosition = window.pageYOffset;
-    const threshold = 100;
 
-    if (scrollPosition > threshold) {
+    if (window.innerHeight > 90) {
       setHeadervisible(false);
     } else {
       setHeadervisible(true);
@@ -61,7 +59,7 @@ export const LogicHeader = () => {
           <div className="header_mesage">
             <span className="home_header">
               <Link className="Link" to="/">
-                <h3>terracita</h3>
+                <h6>terracita</h6>
               </Link>
             </span>
             <div className="activate_home">
@@ -116,10 +114,10 @@ export const LogicHeader = () => {
       {menuMovil && <Menumovil />}
 
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/desayunos" element={<Desayunos />} />
-        <Route path="/comidas" element={<Comidas />} />
-        <Route path="/bebidas" element={<Bebidas />} />
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/desayunos" element={<Desayunos />} />
+        <Route exact path="/comidas" element={<Comidas />} />
+        <Route exact path="/bebidas" element={<Bebidas />} />
       </Routes>
     </div>
   );

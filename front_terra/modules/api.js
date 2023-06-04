@@ -7,51 +7,69 @@ const PORT = 5080;
 
 app.use(cors());
 
-app.get("/inicio", (req, res) => {
-  res.send("Hola mundo desde inicio");
+
+
+
+//funcion principal que se encarga de mandar los menus secundarios
+
+const getDescriptions = (menus) => {
+  const descriptions = {};
+
+  menus.forEach((menu) => {
+    menu.options.forEach((option) => {
+      option.platos.forEach((plato) => {
+        const descriptionKey = option.description;
+
+//agregue condicional que evita repeticion de menus
+
+        if (!descriptions[descriptionKey]) {
+          descriptions[descriptionKey] = [];
+        }
+
+        const existPlato = descriptions[descriptionKey].some(existplato=>{
+          return existplato.name === plato.name
+        })
+
+        if(!existPlato){
+          
+        descriptions[descriptionKey].push({
+          name: plato.name,
+          description: plato.description,
+          price: plato.price
+        });
+        }
+      });
+    });
+  });
+
+  return descriptions;
+};
+    
+    
+
+app.get("/menus",async (req, res) => {
+  
+  const optionMenu = await Menu.find({name:"menu desayunos"});
+  const platosMenus = optionMenu.map(menu=>
+    menu.description
+  )
+  return platosMenus
 });
 
-app.get("/menus", async (req, res) => {
-  try {
-    const uniqueMenus = await Menu.distinct("name");
-    res.json(uniqueMenus);
-  } catch (error) {
-    console.error("Error:", error);
-    res.status(500).send("Error en el sistema");
-  }
-});
+
 
 app.get("/desayunos", async (req, res) => {
   try {
-    const desayunos = await Menu.findOne({ name: "menu desayunos" });
-    if (desayunos && desayunos.platos) {
-      const platosDesayuno = desayunos.platos;
-      res.json(platosDesayuno);
-    } else {
-      res.json([]); // If the breakfast menu is not found or has no dishes, an empty array is returned
-    }
+    const optionMenu = await Menu.find({name:"menu desayunos"});
+    const platosMenus = await getDescriptions(optionMenu);
+    res.json(platosMenus);
   } catch (error) {
     console.error("Error:", error);
-    res.status(500).send("Error en el sistema");
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 
 
-
-app.get("/comidas", async (req, res) => {
-  try {
-    const comidas = await Menu.findOne({ name: "menu comidas" });
-    if (comidas && comidas.platos) {
-      const platosComidas = comidas.platos;
-      res.json(platosComidas);
-    } else {
-      res.json([]); // If the breakfast menu is not found or has no dishes, an empty array is returned
-    }
-  } catch (error) {
-    console.error("Error:", error);
-    res.status(500).send("Error en el sistema");
-  }
-});
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log("Servidor corriendo en el puerto", PORT);
 });

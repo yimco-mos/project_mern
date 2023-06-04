@@ -8,7 +8,7 @@ export const Home = () => {
     <div className="content_menu">
        <div className="title_menu">
  
-       <h2>home</h2>
+       <h2>home <i class="fa-thin fa-house"></i></h2>
 
        </div>
 
