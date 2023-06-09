@@ -327,7 +327,7 @@ export const Menu = mongoose.model("Menu", menuSchema);
       },
     ];
 
-    const result = await Menu.insertMany(menus);
+    const result = await Menu.create(menus);
 
     console.log(`${result.length} documents inserted`);
   } catch (error) {

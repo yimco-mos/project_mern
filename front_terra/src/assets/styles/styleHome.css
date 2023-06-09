@@ -1,30 +1,120 @@
-.image_cover {
-  width: 100%;
-  border-radius: 20px;
-  min-width: 900px;
-  height: 600px;
-    
-  background-size: cover;
-  background: url(/images_files/imagen2.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-
+.Home_content_cover {
   justify-content: center;
   margin: 0 auto;
+  width: 100%;
+  max-width: 1000px;
+  min-height: 800px;
+  padding: 1rem;
+  overflow: hidden;
+  position: relative;
+  margin-top: 0;
 }
 
+
+.content_all {
+  
+  box-shadow: -1px 2px 3px 2px #111;
+  position: relative;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 0.5rem;
+  width: 100%;
+  max-height: 800px;
+  padding: 0;
+  height: 100%;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  transition: all 0.5s ease;
+  background: #69695d35;
+
+}
+
+.image_cover {
+  position:absolute ;
+  z-index: 1;
+  transform: translateY(-10%);
+  justify-content: center;
+  padding:1.55rem;
+  width: 100%;
+  border-radius: 20px;
+  max-width: 1000px;
+  height: 800px;
+  display: block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+}
+
+
+.content_menu {
+  font-family: "Satisfy", cursive;
+  width: 100%;
+  height: 100%;
+  max-height: 800px;
+  color: #faa255;
+  font-weight: 600;
+  font-size: 34px;
+  text-align: center;
+  padding: 1.5rem;
+  display: block;
+  position: absolute;
+  z-index: 100;
+}
+.content_menu:hover{
+  z-index: 1;
+}
+
+
 .title_menu {
+  
+font-size: 22px;
   text-transform: uppercase;
   text-align: center;
 }
+.hover_cover{
 
-.content_menu {
-  background: #b6a42e2c;
-  max-width: 1400px;
-  margin: 0 auto;
+   transition: all .3s ease;
+  z-index: 100;
+  left: 0;
   width: 100%;
-  max-height: 900px;
-  height: 100vh;
-  transform: translateY(10px);
-  position: absolute;
+  content: "";
+  position: relative;
+ min-width: 800px;
+  height: 700px;
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.135);
 }
+
+
+.hover_cover::after {
+ z-index: 1000;
+ content:'';
+ transform: translateX(-40%);
+ transform: translateY(40%);
+ border-radius: 100%;
+ width: 600px;
+ box-shadow: -1px -1px 3px #000;
+ height: 700px;
+ border: 1px solid #111;
+ background:#f9f9f9d5;
+}
+
+
+.hover_cover::after:hover{
+  
+ transform: translateX(40%);
+ transform: translateY(-40%);
+
+}
+.list_menus{
+  width:200px;
+  transform: translateX(-40%);
+}
+@media (max-width: 650px) {
+  
+}
+
+

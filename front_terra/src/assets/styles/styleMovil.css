@@ -17,8 +17,10 @@ left: 0;
 
 }
 .edit_movil li {
+  
+font-family: 'Playfair Display', sans-serif;
   list-style: none;
-
+  font-family: '';
   padding: 1rem;
   margin: 0.65rem;
   cursor: pointer;

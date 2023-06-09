@@ -1,13 +1,11 @@
-import "./assets/styles/App.css";
-import { LogicHeader } from "./assets/components/LogicHeader";
-import { MenuProvider } from "./assets/components/LogicHeader";
+import { FatherComponent } from "./assets/components/FatherComponent";
 
-function App() {
-  return (
-    <MenuProvider>
-      <LogicHeader />
-    </MenuProvider>
+
+
+export const  App=() =>{
+  return (<div>
+  <FatherComponent />
+  </div>
+
   );
 }
-
-export default App;

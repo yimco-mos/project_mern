@@ -1,11 +1,11 @@
-import { Desayunos } from "./menus/menuDesayunos/Desayunos";
+import { ComponentDesayunos} from "./menus/menuDesayunos/ComponentDesayunos";
 import { Comidas } from "./menus/menuComidas/Comidas";
-import { Bebidas } from "./menus/menuBebidas/Bebidas";
+import { Bebidas } from "./menus/menuBebidas/bebidas";
 import { Route, Link, Routes } from "react-router-dom";
 import { Home } from "./Home";
 import { Menumovil } from "./Menumovil";
 import { useContext, createContext, useState, useEffect } from "react";
-import "../styles/stylesHeader.css";
+import "../styles/styleHeader.css";
 
 export const MenuContext = createContext();
 
@@ -20,28 +20,16 @@ export const MenuProvider = ({ children }) => {
 };
 
 export const LogicHeader = () => {
-  const [headervisible, setHeadervisible] = useState(true);
   const { menuMovil, setMenuMovil } = useContext(MenuContext);
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+
     window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  const handleScroll = () => {
-
-    if (window.innerHeight > 90) {
-      setHeadervisible(false);
-    } else {
-      setHeadervisible(true);
-    }
-  };
-
   const handleResize = () => {
     if (window.innerWidth > 610) {
       setMenuMovil(false);
@@ -49,9 +37,12 @@ export const LogicHeader = () => {
   };
 
   return (
-    <div>
-      <header className={headervisible ? "visible" : "hidden"}>
+    <>
+      <header >
         <div className="Headercss">
+
+          <div className="content_header">
+    
           <div className="header_logo">
             <div className="imageLogo"></div>
           </div>
@@ -66,13 +57,11 @@ export const LogicHeader = () => {
          
         
          
-         <span> 
-           <Link to="/" className="Link" >
+         <span className="span_home_activate" onClick={()=>{setMenuMovil(false)}}> 
+           <Link to="/" className="activate_home" >
 
-          <h3>Terracita </h3> </Link>
-          <i className="fa-sharp fa-light fa-house-blank"></i>
-      
-        
+           <i className="fa-solid fa-house "></i>
+         </Link>
 
        </span>
        
@@ -109,16 +98,18 @@ export const LogicHeader = () => {
               <i className="fa-solid fa-burger"></i>
             </button>
           </div>
+
+          </div>
         </div>
       </header>
       {menuMovil && <Menumovil />}
 
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/desayunos" element={<Desayunos />} />
+        <Route exact path="/desayunos" element={<ComponentDesayunos />} />
         <Route exact path="/comidas" element={<Comidas />} />
         <Route exact path="/bebidas" element={<Bebidas />} />
       </Routes>
-    </div>
+    </>
   );
 };

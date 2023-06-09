@@ -7,9 +7,6 @@ const PORT = 5080;
 
 app.use(cors());
 
-
-
-
 //funcion principal que se encarga de mandar los menus y platos
 
 const getDescriptions = (menus) => {
@@ -20,38 +17,33 @@ const getDescriptions = (menus) => {
       option.platos.forEach((plato) => {
         const descriptionKey = option.description;
 
-//agregue condicional que evita repeticion de menus
+        //agregue condicional que evita repeticion de menus
 
         if (!descriptions[descriptionKey]) {
           descriptions[descriptionKey] = [];
         }
 
-        const existPlato = descriptions[descriptionKey].some(existplato=>{
-          return existplato.name === plato.name
-        })
-
-        if(!existPlato){
-          
-        descriptions[descriptionKey].push({
-          name: plato.name,
-          description: plato.description,
-          price: plato.price
+        //condicional para evitar que se repitan los platos
+        const existPlato = descriptions[descriptionKey].some((existplato) => {
+          return existplato.name === plato.name;
         });
+
+        if (!existPlato) {
+          descriptions[descriptionKey].push({
+            name: plato.name,
+            description: plato.description,
+            price: plato.price,
+          });
         }
       });
     });
   });
-
   return descriptions;
 };
-    
-
-
-
 
 app.get("/desayunos", async (req, res) => {
   try {
-    const optionMenu = await Menu.find({name:"menu desayunos"});
+    const optionMenu = await Menu.find({ name: "menu desayunos" });
     const platosMenus = await getDescriptions(optionMenu);
     res.json(platosMenus);
   } catch (error) {
@@ -60,10 +52,9 @@ app.get("/desayunos", async (req, res) => {
   }
 });
 
-
 app.get("/comidas", async (req, res) => {
   try {
-    const optionMenu = await Menu.find({name:"menu comidas"});
+    const optionMenu = await Menu.find({ name: "menu comidas" });
     const platosMenus = await getDescriptions(optionMenu);
     res.json(platosMenus);
   } catch (error) {
@@ -73,7 +64,7 @@ app.get("/comidas", async (req, res) => {
 });
 app.get("/bebidas", async (req, res) => {
   try {
-    const optionMenu = await Menu.find({name:"menu bebidas"});
+    const optionMenu = await Menu.find({ name: "menu bebidas" });
     const platosMenus = await getDescriptions(optionMenu);
     res.json(platosMenus);
   } catch (error) {
@@ -84,4 +75,3 @@ app.get("/bebidas", async (req, res) => {
 app.listen(PORT, () => {
   console.log("Servidor corriendo en el puerto", PORT);
 });
-
